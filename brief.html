@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бриф на розробку сайту</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --primary: #1B3A6B;
+    --primary-light: #264A8A;
+    --accent: #C8A44E;
+    --accent-hover: #b8943e;
+    --bg: #F8F4EC;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #666;
+    --border: #ddd;
+    --success: #27ae60;
+    --error: #e74c3c;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px 40px;
+  }
+  .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .header p { opacity: .85; font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+
+  .container {
+    max-width: 820px;
+    margin: -30px auto 60px;
+    padding: 0 16px;
+  }
+
+  .section {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    padding: 32px 28px;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    background: var(--accent);
+    color: #fff;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: .9rem;
+    margin-bottom: 20px;
+    padding-left: 42px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .form-row.full { grid-template-columns: 1fr; }
+  .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+  .form-group { display: flex; flex-direction: column; }
+  .form-group label {
+    font-size: .85rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--text);
+  }
+  .form-group label .req { color: var(--error); margin-left: 2px; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: .95rem;
+    transition: border-color .2s;
+    background: #fafafa;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    background: #fff;
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  .checkbox-group { margin-bottom: 16px; }
+  .checkbox-group .group-label {
+    font-size: .85rem; font-weight: 500; margin-bottom: 8px;
+  }
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+  }
+  .checkbox-grid label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: .9rem; cursor: pointer; padding: 4px 0;
+  }
+  .checkbox-grid input[type="checkbox"],
+  .checkbox-grid input[type="radio"] {
+    accent-color: var(--primary);
+    width: 16px; height: 16px;
+  }
+
+  /* File upload */
+  .upload-zone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .3s, background .3s;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .upload-zone:hover, .upload-zone.dragover {
+    border-color: var(--accent);
+    background: rgba(200,164,78,.06);
+  }
+  .upload-zone input[type="file"] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  }
+  .upload-zone .icon { font-size: 2.2rem; margin-bottom: 8px; }
+  .upload-zone .label { font-weight: 600; color: var(--primary); }
+  .upload-zone .hint { font-size: .82rem; color: var(--text-muted); margin-top: 4px; }
+
+  .file-list { list-style: none; }
+  .file-list li {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 12px; background: #f5f5f5; border-radius: 6px;
+    margin-bottom: 6px; font-size: .88rem;
+  }
+  .file-list li .remove {
+    background: none; border: none; color: var(--error);
+    cursor: pointer; font-size: 1.1rem; font-weight: 700;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    padding: 10px 20px;
+  }
+  .progress-track {
+    height: 6px; background: #eee; border-radius: 3px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary));
+    border-radius: 3px; transition: width .4s ease;
+    width: 0%;
+  }
+  .progress-text {
+    font-size: .78rem; color: var(--text-muted); text-align: right; margin-top: 4px;
+  }
+
+  /* Submit */
+  .submit-section { text-align: center; padding: 20px 0; }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: #fff;
+    border: none;
+    padding: 16px 48px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(27,58,107,.3);
+  }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(27,58,107,.4);
+  }
+  .btn-submit:active { transform: translateY(0); }
+
+  .btn-secondary {
+    background: none; border: 2px solid var(--primary);
+    color: var(--primary); padding: 12px 32px;
+    font-size: .95rem; font-weight: 600;
+    border-radius: 50px; cursor: pointer;
+    margin-left: 12px; transition: all .2s;
+  }
+  .btn-secondary:hover {
+    background: var(--primary); color: #fff;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 30px; right: 30px;
+    background: var(--success); color: #fff;
+    padding: 16px 24px; border-radius: var(--radius);
+    font-weight: 600; box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    transform: translateY(100px); opacity: 0;
+    transition: all .4s ease;
+    z-index: 999;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 600px) {
+    .form-row, .form-row.triple { grid-template-columns: 1fr; }
+    .checkbox-grid { grid-template-columns: 1fr; }
+    .section { padding: 20px 16px; }
+    .header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Бриф на розробку сайту</h1>
+  <p>Заповніть форму якомога детальніше — це допоможе нам зрозуміти ваш проєкт і підготувати точну пропозицію</p>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-text" id="progressText">0% заповнено</div>
+</div>
+
+<form id="briefForm" class="container">
+
+  <!-- 1. Про компанію -->
+  <div class="section" data-section="1">
+    <div class="section-title"><span class="num">1</span> Про компанію</div>
+    <div class="section-desc">Основна інформація про ваш бізнес</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Назва компанії / бренду <span class="req">*</span></label>
+        <input type="text" name="company_name" required placeholder="ТОВ «Назва»">
+      </div>
+      <div class="form-group">
+        <label>Сфера діяльності <span class="req">*</span></label>
+        <input type="text" name="industry" required placeholder="напр. ресторанний бізнес, IT, медицина">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Код ЄДРПОУ</label>
+        <input type="text" name="edrpou" placeholder="12345678">
+      </div>
+      <div class="form-group">
+        <label>Рік заснування</label>
+        <input type="number" name="year_founded" placeholder="2020" min="1900" max="2030">
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Короткий опис компанії <span class="req">*</span></label>
+        <textarea name="company_desc" required placeholder="Чим займається компанія, які товари/послуги надає, які переваги перед конкурентами"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Місія та цінності компанії</label>
+        <textarea name="mission" placeholder="Опишіть місію, цінності, філософію бренду"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Контактна інформація -->
+  <div class="section" data-section="2">
+    <div class="section-title"><span class="num">2</span> Контактна інформація</div>
+    <div class="section-desc">Як з вами зв'язатися та де вас знайти</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Контактна особа <span class="req">*</span></label>
+        <input type="text" name="contact_person" required placeholder="Прізвище Ім'я По батькові">
+      </div>
+      <div class="form-group">
+        <label>Посада</label>
+        <input type="text" name="position" placeholder="Директор, маркетолог тощо">
+      </div>
+    </div>
+
+    <div class="form-row triple">
+      <div class="form-group">
+        <label>Телефон <span class="req">*</span></label>
+        <input type="tel" name="phone" required placeholder="+380 XX XXX XX XX">
+      </div>
+      <div class="form-group">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" name="email" required placeholder="info@company.ua">
+      </div>
+      <div class="form-group">
+        <label>Telegram / Viber</label>
+        <input type="text" name="messenger" placeholder="@username або номер">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Фізична адреса (офіс / точка)</label>
+        <input type="text" name="address" placeholder="м. Київ, вул. Хрещатик, 1">
+      </div>
+      <div class="form-group">
+        <label>Графік роботи</label>
+        <input type="text" name="schedule" placeholder="Пн-Пт 9:00–18:00, Сб 10:00–15:00">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Координати на карті (Google Maps посилання)</label>
+        <input type="url" name="map_link" placeholder="https://maps.google.com/...">
+      </div>
+      <div class="form-group">
+        <label>Кількість філій / точок</label>
+        <input type="number" name="branches" placeholder="1" min="0">
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Ліцензії та документи -->
+  <div class="section" data-section="3">
+    <div class="section-title"><span class="num">3</span> Ліцензії та юридична інформація</div>
+    <div class="section-desc">Дозволи, сертифікати та документи для розміщення на сайті</div>
+
+    <div class="checkbox-group">
+      <div class="group-label">Які документи потрібно відобразити на сайті?</div>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="docs[]" value="license"> Ліцензія на діяльність</label>
+        <label><input type="checkbox" name="docs[]" value="certificates"> Сертифікати якості</label>
+        <label><input type="checkbox" name="docs[]" value="iso"> ISO стандарти</label>
+        <label><input type="checkbox" name="docs[]" value="permits"> Дозволи / патенти</label>
+        <label><input type="checkbox" name="docs[]" value="privacy"> Політика конфіденційності</label>
+        <label><input type="checkbox" name="docs[]" value="terms"> Умови використання</label>
+        <label><input type="checkbox" name="docs[]" value="oferta"> Публічна оферта</label>
+        <label><input type="checkbox" name="docs[]" value="returns"> Політика повернення</label>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Додаткова інформація про ліцензії / сертифікати</label>
+        <textarea name="license_details" placeholder="Номери ліцензій, ким видані, строк дії тощо"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Про сайт -->
+  <div class="section" data-section="4">
+    <div class="section-title"><span class="num">4</span> Вимоги до сайту</div>
+    <div class="section-desc">Яким ви бачите свій майбутній сайт</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Тип сайту <span class="req">*</span></label>
+        <select name="site_type" required>
+          <option value="">Оберіть тип</option>
+          <option value="landing">Лендінг (одна сторінка)</option>
+          <option value="corporate">Корпоративний сайт</option>
+          <option value="catalog">Каталог товарів / послуг</option>
+          <option value="shop">Інтернет-магазин</option>
+          <option value="portal">Портал / платформа</option>
+          <option value="blog">Блог / медіа</option>
+          <option value="other">Інше</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Бажана CMS / платформа</label>
+        <select name="cms">
+          <option value="">Не знаю / на ваш розсуд</option>
+          <option value="wordpress">WordPress</option>
+          <option value="shopify">Shopify</option>
+          <option value="tilda">Tilda</option>
+          <option value="webflow">Webflow</option>
+          <option value="custom">Кастомна розробка</option>
+          <option value="other">Інше</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Є діючий сайт?</label>
+        <input type="url" name="current_site" placeholder="https://current-site.ua">
+      </div>
+      <div class="form-group">
+        <label>Є домен?</label>
+        <input type="text" name="domain" placeholder="company.ua або «потрібно зареєструвати»">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Орієнтовна кількість сторінок</label>
+        <select name="pages_count">
+          <option value="">Оберіть</option>
+          <option value="1-5">1–5</option>
+          <option value="5-15">5–15</option>
+          <option value="15-30">15–30</option>
+          <option value="30+">30+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Мови сайту</label>
+        <select name="languages">
+          <option value="uk">Тільки українська</option>
+          <option value="uk-en">Українська + англійська</option>
+          <option value="uk-ru">Українська + російська</option>
+          <option value="multi">Мультимовний (3+)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <div class="group-label">Які сторінки / розділи потрібні? <span class="req">*</span></div>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="pages[]" value="home"> Головна</label>
+        <label><input type="checkbox" name="pages[]" value="about"> Про нас</label>
+        <label><input type="checkbox" name="pages[]" value="services"> Послуги / Товари</label>
+        <label><input type="checkbox" name="pages[]" value="portfolio"> Портфоліо / Кейси</label>
+        <label><input type="checkbox" name="pages[]" value="pricing"> Ціни / Тарифи</label>
+        <label><input type="checkbox" name="pages[]" value="blog"> Блог / Новини</label>
+        <label><input type="checkbox" name="pages[]" value="contacts"> Контакти</label>
+        <label><input type="checkbox" name="pages[]" value="faq"> FAQ</label>
+        <label><input type="checkbox" name="pages[]" value="reviews"> Відгуки</label>
+        <label><input type="checkbox" name="pages[]" value="team"> Команда</label>
+        <label><input type="checkbox" name="pages[]" value="gallery"> Галерея</label>
+        <label><input type="checkbox" name="pages[]" value="vacancies"> Вакансії</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Функціонал -->
+  <div class="section" data-section="5">
+    <div class="section-title"><span class="num">5</span> Функціонал сайту</div>
+    <div class="section-desc">Які можливості повинен мати сайт</div>
+
+    <div class="checkbox-group">
+      <div class="group-label">Необхідний функціонал</div>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="features[]" value="contact_form"> Форма зворотного зв'язку</label>
+        <label><input type="checkbox" name="features[]" value="callback"> Зворотний дзвінок</label>
+        <label><input type="checkbox" name="features[]" value="online_chat"> Онлайн-чат</label>
+        <label><input type="checkbox" name="features[]" value="booking"> Онлайн-запис / бронювання</label>
+        <label><input type="checkbox" name="features[]" value="cart"> Кошик та оплата онлайн</label>
+        <label><input type="checkbox" name="features[]" value="crm"> Інтеграція з CRM</label>
+        <label><input type="checkbox" name="features[]" value="newsletter"> Email-розсилка</label>
+        <label><input type="checkbox" name="features[]" value="social"> Інтеграція з соцмережами</label>
+        <label><input type="checkbox" name="features[]" value="analytics"> Google Analytics / Pixel</label>
+        <label><input type="checkbox" name="features[]" value="seo"> SEO-оптимізація</label>
+        <label><input type="checkbox" name="features[]" value="search"> Пошук по сайту</label>
+        <label><input type="checkbox" name="features[]" value="map"> Карта (Google Maps)</label>
+        <label><input type="checkbox" name="features[]" value="calculator"> Калькулятор вартості</label>
+        <label><input type="checkbox" name="features[]" value="auth"> Особистий кабінет</label>
+        <label><input type="checkbox" name="features[]" value="delivery"> Інтеграція з Новою Поштою</label>
+        <label><input type="checkbox" name="features[]" value="payment"> Платіжна система (LiqPay, Mono)</label>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Інший функціонал (опишіть)</label>
+        <textarea name="custom_features" placeholder="Будь-які додаткові можливості, яких немає в списку"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Дизайн -->
+  <div class="section" data-section="6">
+    <div class="section-title"><span class="num">6</span> Дизайн та стиль</div>
+    <div class="section-desc">Візуальні побажання та брендинг</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Бажаний стиль</label>
+        <select name="design_style">
+          <option value="">Оберіть стиль</option>
+          <option value="minimal">Мінімалізм</option>
+          <option value="corporate">Корпоративний / строгий</option>
+          <option value="creative">Креативний / яскравий</option>
+          <option value="premium">Преміум / люксовий</option>
+          <option value="friendly">Дружній / неформальний</option>
+          <option value="eco">Еко / натуральний</option>
+          <option value="tech">Технологічний / футуристичний</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Кольори бренду</label>
+        <input type="text" name="brand_colors" placeholder="напр. синій #1B3A6B, золотий #C8A44E">
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Приклади сайтів, які подобаються (до 5 посилань)</label>
+        <textarea name="reference_sites" placeholder="https://example1.com — подобається навігація&#10;https://example2.com — подобається дизайн"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Приклади сайтів, які НЕ подобаються</label>
+        <textarea name="dislike_sites" placeholder="https://bad-example.com — чому не подобається"></textarea>
+      </div>
+    </div>
+
+    <div class="checkbox-group">
+      <div class="group-label">Чи є у вас готові брендбук-матеріали?</div>
+      <div class="checkbox-grid">
+        <label><input type="checkbox" name="brand[]" value="logo"> Логотип</label>
+        <label><input type="checkbox" name="brand[]" value="brandbook"> Брендбук / гайдлайни</label>
+        <label><input type="checkbox" name="brand[]" value="fonts"> Фірмові шрифти</label>
+        <label><input type="checkbox" name="brand[]" value="icons"> Іконки / ілюстрації</label>
+        <label><input type="checkbox" name="brand[]" value="photos"> Професійні фото</label>
+        <label><input type="checkbox" name="brand[]" value="videos"> Відеоматеріали</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Цільова аудиторія -->
+  <div class="section" data-section="7">
+    <div class="section-title"><span class="num">7</span> Цільова аудиторія</div>
+    <div class="section-desc">Хто ваші клієнти</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Тип клієнтів</label>
+        <select name="audience_type">
+          <option value="">Оберіть</option>
+          <option value="b2c">B2C (фізичні особи)</option>
+          <option value="b2b">B2B (бізнес)</option>
+          <option value="both">Обидва</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Вікова група</label>
+        <input type="text" name="age_group" placeholder="напр. 25–45 років">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Географія</label>
+        <input type="text" name="geography" placeholder="напр. вся Україна, м. Київ, Європа">
+      </div>
+      <div class="form-group">
+        <label>Рівень доходу аудиторії</label>
+        <select name="income_level">
+          <option value="">Оберіть</option>
+          <option value="low">Економ-сегмент</option>
+          <option value="mid">Середній</option>
+          <option value="high">Преміум</option>
+          <option value="mixed">Різний</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Основні болі / потреби клієнтів</label>
+        <textarea name="client_needs" placeholder="Які проблеми вирішує ваш продукт/послуга для клієнтів?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Конкуренти -->
+  <div class="section" data-section="8">
+    <div class="section-title"><span class="num">8</span> Конкуренти</div>
+    <div class="section-desc">Хто ваші основні конкуренти на ринку</div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Основні конкуренти (назви, сайти)</label>
+        <textarea name="competitors" placeholder="1. Назва — https://competitor1.ua&#10;2. Назва — https://competitor2.ua&#10;3. Назва — https://competitor3.ua"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Ваші переваги перед конкурентами</label>
+        <textarea name="advantages" placeholder="Що відрізняє вас від конкурентів? Чому клієнти повинні обрати саме вас?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Контент і матеріали -->
+  <div class="section" data-section="9">
+    <div class="section-title"><span class="num">9</span> Контент і матеріали</div>
+    <div class="section-desc">Тексти, фото, відео та інші файли для сайту</div>
+
+    <div class="checkbox-group">
+      <div class="group-label">Хто готує контент?</div>
+      <div class="checkbox-grid">
+        <label><input type="radio" name="content_source" value="client"> Ми надамо весь контент</label>
+        <label><input type="radio" name="content_source" value="studio"> Потрібна допомога з контентом</label>
+        <label><input type="radio" name="content_source" value="both"> Частково ми, частково ви</label>
+        <label><input type="radio" name="content_source" value="copywriter"> Потрібен копірайтер</label>
+      </div>
+    </div>
+
+    <!-- Логотип -->
+    <div class="upload-zone" id="dropLogo">
+      <div class="icon">🎨</div>
+      <div class="label">Логотип</div>
+      <div class="hint">PNG, SVG, AI, EPS — до 20 МБ</div>
+      <input type="file" name="logo" accept=".png,.svg,.ai,.eps,.pdf" multiple>
+    </div>
+    <ul class="file-list" id="listLogo"></ul>
+
+    <!-- Фотографії -->
+    <div class="upload-zone" id="dropPhotos">
+      <div class="icon">📸</div>
+      <div class="label">Фотографії (продукти, офіс, команда)</div>
+      <div class="hint">JPG, PNG, WEBP — до 20 МБ кожен, до 50 файлів</div>
+      <input type="file" name="photos" accept="image/*" multiple>
+    </div>
+    <ul class="file-list" id="listPhotos"></ul>
+
+    <!-- Відео -->
+    <div class="upload-zone" id="dropVideos">
+      <div class="icon">🎬</div>
+      <div class="label">Відеоматеріали</div>
+      <div class="hint">MP4, MOV — до 500 МБ, або вставте посилання на YouTube</div>
+      <input type="file" name="videos" accept="video/*" multiple>
+    </div>
+    <ul class="file-list" id="listVideos"></ul>
+
+    <!-- Документи -->
+    <div class="upload-zone" id="dropDocs">
+      <div class="icon">📄</div>
+      <div class="label">Документи (ліцензії, сертифікати, прайси)</div>
+      <div class="hint">PDF, DOC, XLS — до 20 МБ кожен</div>
+      <input type="file" name="documents" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple>
+    </div>
+    <ul class="file-list" id="listDocs"></ul>
+
+    <!-- Брендбук -->
+    <div class="upload-zone" id="dropBrand">
+      <div class="icon">📐</div>
+      <div class="label">Брендбук / гайдлайни</div>
+      <div class="hint">PDF, AI — до 50 МБ</div>
+      <input type="file" name="brandbook" accept=".pdf,.ai,.eps" multiple>
+    </div>
+    <ul class="file-list" id="listBrand"></ul>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Посилання на хмарне сховище з матеріалами</label>
+        <input type="url" name="cloud_link" placeholder="Google Drive, Dropbox тощо">
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Посилання на відео (YouTube, Vimeo)</label>
+        <textarea name="video_links" placeholder="https://youtube.com/watch?v=...&#10;https://youtube.com/watch?v=..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10. Соціальні мережі -->
+  <div class="section" data-section="10">
+    <div class="section-title"><span class="num">10</span> Соціальні мережі та маркетинг</div>
+    <div class="section-desc">Ваша присутність в інтернеті</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Instagram</label>
+        <input type="url" name="instagram" placeholder="https://instagram.com/...">
+      </div>
+      <div class="form-group">
+        <label>Facebook</label>
+        <input type="url" name="facebook" placeholder="https://facebook.com/...">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Telegram</label>
+        <input type="url" name="telegram" placeholder="https://t.me/...">
+      </div>
+      <div class="form-group">
+        <label>TikTok</label>
+        <input type="url" name="tiktok" placeholder="https://tiktok.com/@...">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>YouTube</label>
+        <input type="url" name="youtube" placeholder="https://youtube.com/@...">
+      </div>
+      <div class="form-group">
+        <label>LinkedIn</label>
+        <input type="url" name="linkedin" placeholder="https://linkedin.com/company/...">
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Google Мій Бізнес (посилання або назва)</label>
+        <input type="text" name="google_business" placeholder="https://g.co/... або назва профілю">
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Бюджет і терміни -->
+  <div class="section" data-section="11">
+    <div class="section-title"><span class="num">11</span> Бюджет і терміни</div>
+    <div class="section-desc">Фінансові рамки та дедлайни</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Орієнтовний бюджет (грн)</label>
+        <select name="budget">
+          <option value="">Оберіть діапазон</option>
+          <option value="10-25k">10 000 – 25 000 грн</option>
+          <option value="25-50k">25 000 – 50 000 грн</option>
+          <option value="50-100k">50 000 – 100 000 грн</option>
+          <option value="100-200k">100 000 – 200 000 грн</option>
+          <option value="200k+">Більше 200 000 грн</option>
+          <option value="discuss">Готовий обговорити</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Бажаний термін запуску</label>
+        <input type="date" name="deadline">
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Чи потрібна подальша підтримка сайту?</label>
+        <select name="support">
+          <option value="">Оберіть</option>
+          <option value="no">Ні, тільки розробка</option>
+          <option value="basic">Базова (хостинг, оновлення)</option>
+          <option value="full">Повна (контент, SEO, технічна)</option>
+          <option value="discuss">Обговоримо</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Додатково -->
+  <div class="section" data-section="12">
+    <div class="section-title"><span class="num">12</span> Додаткова інформація</div>
+    <div class="section-desc">Все, що ви хочете додати</div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Додаткові побажання та коментарі</label>
+        <textarea name="additional" rows="5" placeholder="Будь-що, що ви вважаєте важливим і що не було згадано вище"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Як ви дізнались про нас?</label>
+        <select name="referral">
+          <option value="">Оберіть</option>
+          <option value="google">Пошук Google</option>
+          <option value="social">Соціальні мережі</option>
+          <option value="recommendation">Рекомендація</option>
+          <option value="ads">Реклама</option>
+          <option value="other">Інше</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-section">
+    <button type="submit" class="btn-submit">Надіслати бриф</button>
+    <button type="button" class="btn-secondary" onclick="saveDraft()">Зберегти чернетку</button>
+  </div>
+
+</form>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// =====================================================
+// ВАЖНО: вставьте URL вашего Google Apps Script сюда
+const APPS_SCRIPT_URL = 'ВСТАВТЕ_URL_СЮДИ';
+// =====================================================
+
+const form = document.getElementById('briefForm');
+const requiredFields = form.querySelectorAll('input[required], select[required], textarea[required]');
+const progressFill = document.getElementById('progressFill');
+const progressText = document.getElementById('progressText');
+
+// Собираем все загруженные файлы по зонам
+const uploadedFiles = {};
+
+// --- Progress bar ---
+function updateProgress() {
+  let filled = 0;
+  requiredFields.forEach(f => { if (f.value && f.value.trim()) filled++; });
+  const pct = Math.round((filled / requiredFields.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressText.textContent = pct + '% заповнено';
+}
+form.addEventListener('input', updateProgress);
+form.addEventListener('change', updateProgress);
+
+// --- File uploads with drag & drop ---
+document.querySelectorAll('.upload-zone').forEach(zone => {
+  const input = zone.querySelector('input[type="file"]');
+  const zoneId = zone.id;
+  const listId = 'list' + zoneId.replace('drop', '');
+  const list = document.getElementById(listId);
+  uploadedFiles[zoneId] = [];
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    addFiles(e.dataTransfer.files);
+  });
+  input.addEventListener('change', () => { addFiles(input.files); input.value = ''; });
+
+  function addFiles(fileList) {
+    [...fileList].forEach(f => {
+      // Лимит 10 МБ на файл для base64 через Apps Script
+      if (f.size > 10 * 1024 * 1024) {
+        showToast('⚠ ' + f.name + ' перевищує 10 МБ. Завантажте через Google Drive.');
+        return;
+      }
+      uploadedFiles[zoneId].push(f);
+      const li = document.createElement('li');
+      const size = (f.size / 1024 / 1024).toFixed(1);
+      li.innerHTML = '<span>' + f.name + ' (' + size + ' МБ)</span>';
+      const btn = document.createElement('button');
+      btn.className = 'remove';
+      btn.textContent = '×';
+      btn.onclick = () => {
+        const idx = uploadedFiles[zoneId].indexOf(f);
+        if (idx > -1) uploadedFiles[zoneId].splice(idx, 1);
+        li.remove();
+      };
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+  }
+});
+
+// --- Читаем файл как base64 ---
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result.split(',')[1];
+      resolve({
+        name: file.name,
+        mimeType: file.type || 'application/octet-stream',
+        size: file.size,
+        data: base64
+      });
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// --- Собираем данные формы ---
+function collectFormData() {
+  const fd = new FormData(form);
+  const obj = {};
+  for (const [key, val] of fd.entries()) {
+    if (obj[key]) {
+      if (!Array.isArray(obj[key])) obj[key] = [obj[key]];
+      obj[key].push(val);
+    } else {
+      obj[key] = val;
+    }
+  }
+  return obj;
+}
+
+// --- Сохранить черновик ---
+function saveDraft() {
+  const obj = collectFormData();
+  try {
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'brief-draft.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('Чернетку збережено як файл');
+  } catch(e) {
+    showToast('Помилка збереження');
+  }
+}
+
+// --- Модальное окно прогресса ---
+function showSendingModal() {
+  const overlay = document.createElement('div');
+  overlay.id = 'sendingOverlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:center;justify-content:center';
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:40px 50px;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.3)">
+      <div id="sendingSpinner" style="width:50px;height:50px;border:4px solid #eee;border-top:4px solid #1B3A6B;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px"></div>
+      <div id="sendingStatus" style="font-size:1.1rem;font-weight:600;color:#1B3A6B">Надсилаємо бриф...</div>
+      <div id="sendingDetail" style="font-size:.85rem;color:#666;margin-top:8px">Підготовка файлів</div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  const style = document.createElement('style');
+  style.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+  document.head.appendChild(style);
+}
+
+function updateSendingModal(status, detail) {
+  const s = document.getElementById('sendingStatus');
+  const d = document.getElementById('sendingDetail');
+  if (s) s.textContent = status;
+  if (d) d.textContent = detail;
+}
+
+function hideSendingModal() {
+  const el = document.getElementById('sendingOverlay');
+  if (el) el.remove();
+}
+
+// --- Показать результат ---
+function showResult(success, message) {
+  hideSendingModal();
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:flex;align-items:center;justify-content:center';
+  overlay.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:40px 50px;text-align:center;max-width:440px;box-shadow:0 8px 40px rgba(0,0,0,.3)">
+      <div style="font-size:3rem;margin-bottom:16px">${success ? '✅' : '❌'}</div>
+      <div style="font-size:1.2rem;font-weight:700;color:${success ? '#27ae60' : '#e74c3c'};margin-bottom:12px">
+        ${success ? 'Бриф надіслано!' : 'Помилка'}
+      </div>
+      <div style="font-size:.95rem;color:#444;line-height:1.5">${message}</div>
+      <button onclick="this.closest('div[style]').parentElement.remove()" style="margin-top:20px;padding:10px 30px;background:#1B3A6B;color:#fff;border:none;border-radius:8px;font-size:1rem;cursor:pointer">OK</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+
+// --- Отправка формы ---
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+
+  if (APPS_SCRIPT_URL === 'ВСТАВТЕ_URL_СЮДИ') {
+    showToast('⚠ Спочатку налаштуйте Google Apps Script (див. інструкцію)');
+    return;
+  }
+
+  const fields = collectFormData();
+
+  // Валидация обязательных
+  const missing = [];
+  requiredFields.forEach(f => {
+    if (!f.value || !f.value.trim()) {
+      const label = f.closest('.form-group')?.querySelector('label')?.textContent?.replace('*','').trim();
+      missing.push(label || f.name);
+      f.style.borderColor = '#e74c3c';
+    } else {
+      f.style.borderColor = '';
+    }
+  });
+  if (missing.length) {
+    showToast('Заповніть обов\'язкові поля: ' + missing.join(', '));
+    return;
+  }
+
+  showSendingModal();
+
+  // Собираем файлы в base64
+  const allFiles = [];
+  let fileIdx = 0;
+  const allZones = Object.keys(uploadedFiles);
+  for (const zoneId of allZones) {
+    for (const file of uploadedFiles[zoneId]) {
+      fileIdx++;
+      updateSendingModal('Надсилаємо бриф...', 'Обробка файлу ' + fileIdx + ': ' + file.name);
+      try {
+        const b64 = await readFileAsBase64(file);
+        allFiles.push(b64);
+      } catch(err) {
+        console.error('File read error:', file.name, err);
+      }
+    }
+  }
+
+  updateSendingModal('Надсилаємо бриф...', 'Відправка на сервер...');
+
+  try {
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ fields, files: allFiles })
+    });
+    const result = await response.json();
+
+    if (result.success) {
+      showResult(true,
+        'Дякуємо! Ваш бриф збережено.<br>' +
+        (result.filesUploaded > 0 ? 'Файлів завантажено: ' + result.filesUploaded + '<br>' : '') +
+        'Ми зв\'яжемося з вами найближчим часом.'
+      );
+      form.reset();
+      updateProgress();
+      // Очистить списки файлов
+      document.querySelectorAll('.file-list').forEach(ul => ul.innerHTML = '');
+      Object.keys(uploadedFiles).forEach(k => uploadedFiles[k] = []);
+    } else {
+      showResult(false, 'Сталася помилка: ' + (result.error || 'Невідома помилка') + '<br>Спробуйте ще раз або зверніться за допомогою.');
+    }
+  } catch(err) {
+    showResult(false, 'Помилка з\'єднання з сервером.<br>Перевірте інтернет та спробуйте ще раз.');
+    console.error('Submit error:', err);
+  }
+});
+
+// --- Toast ---
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// Init
+updateProgress();
+</script>
+
+</body>
+</html>
