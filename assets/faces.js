@@ -31,7 +31,7 @@
     if (!shouldMove()) return;
     const elapsed = lastTime ? Math.min(time - lastTime, 64) : 0;
     lastTime = time;
-    position = (position + elapsed * 0.027) % cycleWidth;
+    position = (position + elapsed * 0.009) % cycleWidth;
     viewport.scrollLeft = position;
     frameId = requestAnimationFrame(animate);
   }
