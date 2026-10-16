@@ -18,7 +18,12 @@ if (contents) {
   smallScreen.addEventListener('change', adaptContents);
   contents.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      if (smallScreen.matches) contents.open = false;
+      if (smallScreen.matches) {
+        contents.open = false;
+        const target = document.getElementById(new URL(link.href).hash.slice(1));
+        // Move keyboard focus out of the folded navigation after the anchor jump.
+        requestAnimationFrame(() => target?.focus({ preventScroll: true }));
+      }
     });
   });
 }
