@@ -56,18 +56,17 @@ section{padding:5rem 1.5rem;max-width:900px;margin:0 auto}
 .section-title::after{content:'';position:absolute;bottom:-6px;left:0;width:50px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);border-radius:2px}
 
 /* ===== ABOUT CARDS ===== */
-.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.2rem;margin-top:2rem}
-.about-card{background:#fff;border:1px solid #e2e8f2;border-radius:14px;padding:1.5rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
-.about-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--blue2),var(--blue3));transform:scaleX(0);transition:transform .3s;transform-origin:left}
-.about-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(26,58,107,.1)}
-.about-card:hover::before{transform:scaleX(1)}
-.about-card .card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.8rem;font-weight:700}
-.card-icon.blue{background:linear-gradient(135deg,#e8f0fe,#d0e2ff);color:var(--blue2)}
-.card-icon.gold{background:linear-gradient(135deg,#fef3d0,#fde8a0);color:#8a6d1b}
-.card-icon.green{background:linear-gradient(135deg,#e0f5e9,#b8e6c8);color:#1a7a3a}
-.card-icon.red{background:linear-gradient(135deg,#fde8e8,#f8c8c8);color:#a62626}
-.about-card h3{font-size:.95rem;margin-bottom:.3rem;color:var(--blue1);font-weight:700}
-.about-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.about-section{background:linear-gradient(135deg,rgba(15,30,55,.9),rgba(27,58,107,.86)),url('texture1.jpg') center/cover no-repeat;color:#fff;border-block:1px solid rgba(212,168,67,.3)}
+.about-section section{max-width:1100px}
+.about-section .section-title{color:#fff}
+.about-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:2rem}
+.about-card{background:rgba(255,255,255,.055);border:1px solid rgba(212,168,67,.25);border-radius:14px;padding:1.5rem 1.25rem;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.about-card::before{content:'';position:absolute;top:0;left:1.25rem;right:1.25rem;height:2px;background:linear-gradient(90deg,var(--gold),rgba(212,168,67,.1))}
+.about-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.16);background:rgba(255,255,255,.09);border-color:rgba(212,168,67,.55)}
+.about-card .card-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;color:#efd18c;background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.3)}
+.card-icon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.about-card h3{font-size:1rem;margin-bottom:.55rem;color:#efd18c;font-weight:700}
+.about-card p{font-size:.85rem;color:#e0e7f1;line-height:1.7}
 
 /* ===== GOALS ===== */
 .goals{background:linear-gradient(180deg,rgba(248,244,236,.7) 0%,rgba(255,255,255,.73) 100%),url('texture2.jpg') center/cover no-repeat fixed;padding:5rem 1.5rem}
@@ -99,7 +98,7 @@ section{padding:5rem 1.5rem;max-width:900px;margin:0 auto}
 
 /* ===== DECLARATION ===== */
 .declaration-section{background:#f6f3ed;border-top:1px solid #e8dfcd;border-bottom:1px solid #e8dfcd}
-.declaration-section section{max-width:900px;scroll-margin-top:1.5rem}
+.declaration-section section{max-width:1100px;scroll-margin-top:1.5rem}
 .declaration-kicker{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
 .declaration-motto{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--blue1);margin:.5rem 0 1rem}
 .declaration-intro{max-width:720px;color:var(--muted)}
@@ -107,12 +106,12 @@ section{padding:5rem 1.5rem;max-width:900px;margin:0 auto}
 .declaration-details summary{cursor:pointer;padding:1.2rem 1.5rem;font-weight:700;color:var(--blue1)}
 .declaration-details summary:hover{background:#fcf8ef}
 .declaration-details[open] summary{border-bottom:1px solid #e3d9c3}
-.declaration-list{padding:0 1.8rem 0 3.5rem;margin:0}
-.declaration-list li{padding:1.4rem 0 1.4rem .5rem;border-bottom:1px solid #e8edf4}
-.declaration-list li:last-child{border-bottom:0}
-.declaration-list li::marker{font-weight:800;color:#8a6d1b}
-.declaration-list h3{font-size:.95rem;line-height:1.5;color:var(--blue1);margin-bottom:.45rem}
-.declaration-list p{font-size:.92rem;color:var(--muted)}
+.declaration-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem;list-style:none;counter-reset:principle;padding:.3rem 1.8rem .8rem;margin:0}
+.declaration-list li{position:relative;min-width:0;counter-increment:principle;padding:1.2rem 0 1.2rem 2rem;border-bottom:1px solid #e8edf4}
+.declaration-list li:nth-last-child(-n+2){border-bottom:0}
+.declaration-list li::before{content:counter(principle,decimal-leading-zero);position:absolute;left:0;top:1.2rem;font-size:.85rem;font-weight:800;line-height:1.5;color:#8a6d1b}
+.declaration-list h3{font-size:.9rem;line-height:1.5;color:var(--blue1);margin-bottom:.45rem;overflow-wrap:anywhere}
+.declaration-list p{font-size:.9rem;color:var(--muted);line-height:1.7}
 
 /* ===== COUNTRIES ===== */
 .cities-section{background:linear-gradient(180deg,rgba(238,242,249,.72),rgba(238,242,249,.75)),url('texture2.jpg') center/cover no-repeat fixed;padding:5rem 0}
@@ -149,6 +148,13 @@ footer .copy{font-size:.72rem;opacity:.4}
 .d1{animation-delay:.15s}.d2{animation-delay:.3s}.d3{animation-delay:.45s}.d4{animation-delay:.6s}
 
 /* ===== MOBILE ===== */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:720px){
+  .declaration-list{grid-template-columns:1fr}
+  .declaration-list li:nth-last-child(2){border-bottom:1px solid #e8edf4}
+}
 @media(max-width:600px){
   .logo{width:120px;height:120px}
   .hero .stats{gap:1.5rem}
@@ -158,7 +164,11 @@ footer .copy{font-size:.72rem;opacity:.4}
   .countries-grid{grid-template-columns:1fr}
   .country{display:flex;align-items:center;justify-content:center;gap:1rem;padding:1rem}
   .country-flag{margin-bottom:0}
-  .declaration-list{padding:0 1rem 0 2.5rem}
+  .about-grid{grid-template-columns:1fr;gap:.85rem}
+  .about-card{display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:1rem;padding:1.3rem}
+  .about-card .card-icon{grid-row:1 / 3;margin-bottom:0}
+  .about-card p{grid-column:2}
+  .declaration-list{padding:0 1rem .5rem}
   .declaration-details summary{padding:1rem}
   .cta-bottom{padding:3.5rem 1.2rem}
   .goal-grid{grid-template-columns:1fr}
@@ -185,33 +195,6 @@ footer .copy{font-size:.72rem;opacity:.4}
   </div>
   <div class="scroll-hint">↓ УЗНАТЬ БОЛЬШЕ</div>
 </div>
-
-<!-- О нас -->
-<section id="about" class="tex-dots">
-  <h2 class="section-title">Что мы делаем</h2>
-  <div class="about-grid">
-    <div class="about-card">
-      <div class="card-icon blue">🤝</div>
-      <h3>Объединяем</h3>
-      <p>Единомышленников из 3 стран — Украины, России и Беларуси. Общение, культура и взаимопомощь</p>
-    </div>
-    <div class="about-card">
-      <div class="card-icon gold">⚡</div>
-      <h3>Действуем</h3>
-      <p>Встречи, акции, культурные мероприятия — не лозунги, а реальные дела</p>
-    </div>
-    <div class="about-card">
-      <div class="card-icon green">🛡</div>
-      <h3>Помогаем</h3>
-      <p>Взаимопомощь — от информации до реальных дел. Каждый участник — союзник</p>
-    </div>
-    <div class="about-card">
-      <div class="card-icon red">🎯</div>
-      <h3>Сохраняем</h3>
-      <p>Общую культуру и историю. Продвигаем то, что нас объединяет</p>
-    </div>
-  </div>
-</section>
 
 <!-- Декларация ценностей и принципов -->
 <div class="declaration-section">
@@ -274,6 +257,35 @@ footer .copy{font-size:.72rem;opacity:.4}
       </ol>
     </details>
   </section>
+</div>
+
+<!-- О нас -->
+<div class="about-section">
+<section id="about" aria-labelledby="about-title">
+  <h2 class="section-title" id="about-title">Что мы делаем</h2>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="7" r="3"/><path d="M6 21v-2a6 6 0 0 1 12 0v2M4 5a3 3 0 0 0 0 6M20 5a3 3 0 0 1 0 6M2 19v-2a4 4 0 0 1 2-3.5M22 19v-2a4 4 0 0 0-2-3.5"/></svg></div>
+      <h3>Объединяем</h3>
+      <p>Единомышленников из 3 стран — Украины, России и Беларуси. Общение, культура и взаимопомощь</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"/></svg></div>
+      <h3>Действуем</h3>
+      <p>Встречи, акции, культурные мероприятия — не лозунги, а реальные дела</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg></div>
+      <h3>Помогаем</h3>
+      <p>Взаимопомощь — от информации до реальных дел. Каждый участник — союзник</p>
+    </div>
+    <div class="about-card">
+      <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 6c-3-2-7-2-10-1v14c4-1 7 0 10 2 3-2 6-3 10-2V5c-3-1-7-1-10 1Zm0 0v15M5 9l4 1M5 13l4 1M15 10l4-1M15 14l4-1"/></svg></div>
+      <h3>Сохраняем</h3>
+      <p>Общую культуру и историю. Продвигаем то, что нас объединяет</p>
+    </div>
+  </div>
+</section>
 </div>
 
 <!-- Цели -->
