@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Восточно-славянское единство | ВСЕ</title>
-<meta name="description" content="Объединяем единомышленников в 3 странах и 24 городах. Культура. Действие. Взаимопомощь.">
+<meta name="description" content="Восточно-Славянское Единство — 3 страны: Украина, Россия и Беларусь. Декларация ценностей и принципов. Достоинство. Свобода. Ответственность.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -38,6 +38,10 @@ a:hover{color:var(--blue3)}
 .stat .label{font-size:.75rem;opacity:.55;text-transform:uppercase;letter-spacing:.12em;font-weight:600}
 .cta{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--gold),#e0b94f);color:#1a2a4a;padding:.85rem 2.2rem;border-radius:8px;font-size:1rem;font-weight:700;transition:all .3s;box-shadow:0 4px 20px rgba(212,168,67,.35);border:none;cursor:pointer}
 .cta:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(212,168,67,.5);color:#1a2a4a}
+.hero-actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem}
+.declaration-link{color:#fff;padding:.85rem 1.2rem;border:1px solid rgba(255,255,255,.4);border-radius:8px;font-weight:600}
+.declaration-link:hover{color:var(--gold);border-color:var(--gold)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:5px}
 .scroll-hint{position:absolute;bottom:2rem;color:rgba(255,255,255,.35);font-size:.75rem;animation:bounce 2s infinite;letter-spacing:.1em}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 
@@ -93,12 +97,30 @@ section{padding:5rem 1.5rem;max-width:900px;margin:0 auto}
 .value-item div strong{display:block;margin-bottom:.15rem;color:var(--gold);font-size:.95rem}
 .value-item div span{font-size:.85rem;opacity:.8}
 
-/* ===== CITIES ===== */
+/* ===== DECLARATION ===== */
+.declaration-section{background:#f6f3ed;border-top:1px solid #e8dfcd;border-bottom:1px solid #e8dfcd}
+.declaration-section section{max-width:900px;scroll-margin-top:1.5rem}
+.declaration-kicker{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem}
+.declaration-motto{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:700;color:var(--blue1);margin:.5rem 0 1rem}
+.declaration-intro{max-width:720px;color:var(--muted)}
+.declaration-details{margin-top:1.8rem;background:#fff;border:1px solid #e3d9c3;border-radius:14px;overflow:hidden}
+.declaration-details summary{cursor:pointer;padding:1.2rem 1.5rem;font-weight:700;color:var(--blue1)}
+.declaration-details summary:hover{background:#fcf8ef}
+.declaration-details[open] summary{border-bottom:1px solid #e3d9c3}
+.declaration-list{padding:0 1.8rem 0 3.5rem;margin:0}
+.declaration-list li{padding:1.4rem 0 1.4rem .5rem;border-bottom:1px solid #e8edf4}
+.declaration-list li:last-child{border-bottom:0}
+.declaration-list li::marker{font-weight:800;color:#8a6d1b}
+.declaration-list h3{font-size:.95rem;line-height:1.5;color:var(--blue1);margin-bottom:.45rem}
+.declaration-list p{font-size:.92rem;color:var(--muted)}
+
+/* ===== COUNTRIES ===== */
 .cities-section{background:linear-gradient(180deg,rgba(238,242,249,.72),rgba(238,242,249,.75)),url('texture2.jpg') center/cover no-repeat fixed;padding:5rem 0}
 .cities-section section{max-width:900px}
-.cities-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.5rem;margin-top:1.5rem}
-.city{background:#fff;border:1px solid #dde4f0;border-radius:8px;padding:.55rem .8rem;text-align:center;font-size:.85rem;font-weight:600;transition:all .3s;cursor:default}
-.city:hover{border-color:var(--gold);background:linear-gradient(135deg,#fef9ee,#fef3d0);transform:translateY(-2px);box-shadow:0 4px 12px rgba(212,168,67,.15)}
+.countries-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem;list-style:none}
+.country{text-align:center;padding:1.4rem 1rem;background:#fff;border:1px solid #dde4f0;border-radius:14px}
+.country-flag{font-size:2rem;margin-bottom:.3rem}
+.country h3{font-size:1rem;font-weight:700;color:var(--blue1)}
 
 /* ===== STEPS ===== */
 .steps{margin-top:2rem;display:grid;gap:1.5rem}
@@ -133,7 +155,11 @@ footer .copy{font-size:.72rem;opacity:.4}
   section{padding:3.5rem 1.2rem}
   .values{padding:3.5rem 1.2rem}
   .goals{padding:3.5rem 1.2rem}
-  .cities-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .countries-grid{grid-template-columns:1fr}
+  .country{display:flex;align-items:center;justify-content:center;gap:1rem;padding:1rem}
+  .country-flag{margin-bottom:0}
+  .declaration-list{padding:0 1rem 0 2.5rem}
+  .declaration-details summary{padding:1rem}
   .cta-bottom{padding:3.5rem 1.2rem}
   .goal-grid{grid-template-columns:1fr}
 }
@@ -151,10 +177,12 @@ footer .copy{font-size:.72rem;opacity:.4}
   <p class="tagline fade-up d2">Объединяем тех, кому не всё равно. Культура. Действие. Взаимопомощь.</p>
   <div class="stats fade-up d3">
     <div class="stat"><div class="num">3</div><div class="label">страны</div></div>
-    <div class="stat"><div class="num">24</div><div class="label">города</div></div>
     <div class="stat"><div class="num">ВСЕ</div><div class="label">одна идея</div></div>
   </div>
-  <a class="cta fade-up d4" href="https://t.me/vse_edinstvo_bot">Вступить →</a>
+  <div class="hero-actions fade-up d4">
+    <a class="cta" href="https://t.me/vse_edinstvo_bot">Вступить →</a>
+    <a class="declaration-link" href="#declaration">Наша декларация</a>
+  </div>
   <div class="scroll-hint">↓ УЗНАТЬ БОЛЬШЕ</div>
 </div>
 
@@ -165,7 +193,7 @@ footer .copy{font-size:.72rem;opacity:.4}
     <div class="about-card">
       <div class="card-icon blue">🤝</div>
       <h3>Объединяем</h3>
-      <p>Единомышленников в 3 странах и 24 городах — чаты для общения и координации</p>
+      <p>Единомышленников из 3 стран — Украины, России и Беларуси. Общение, культура и взаимопомощь</p>
     </div>
     <div class="about-card">
       <div class="card-icon gold">⚡</div>
@@ -184,6 +212,69 @@ footer .copy{font-size:.72rem;opacity:.4}
     </div>
   </div>
 </section>
+
+<!-- Декларация ценностей и принципов -->
+<div class="declaration-section">
+  <section id="declaration" aria-labelledby="declaration-title">
+    <p class="declaration-kicker">Восточно-Славянское Единство · ВСЕ</p>
+    <h2 class="section-title" id="declaration-title">Декларация ценностей и принципов</h2>
+    <p class="declaration-motto">Достоинство. Свобода. Ответственность.</p>
+    <p class="declaration-intro">Мы объединяем людей, которые хотят жить достойно, свободно говорить, честно трудиться и влиять на решения, определяющие их жизнь. Мы бережём свою культуру и уважаем право других на собственную.</p>
+    <details class="declaration-details" id="declaration-text">
+      <summary>Читать декларацию · 12 принципов</summary>
+      <ol class="declaration-list">
+        <li>
+          <h3>МЫ ГОВОРИМ НА ЛЮБОМ ДОСТУПНОМ ЯЗЫКЕ.</h3>
+          <p>Наша цель — понимать друг друга. Мы поддерживаем изучение языков и сохранение культурного наследия. Язык общения не определяет достоинство человека.</p>
+        </li>
+        <li>
+          <h3>МЫ ПРОТИВ ЛЮБОГО ПРОИЗВОЛА ВЛАСТИ.</h3>
+          <p>Каждое ограничение должно иметь понятное основание, соразмерную цель и возможность независимого обжалования. Должность не даёт права унижать человека.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА ЗДРАВЫЙ СМЫСЛ И ДОКАЗАТЕЛЬНЫЕ РЕШЕНИЯ.</h3>
+          <p>Перед введением нового правила власть должна объяснить, какую проблему оно решает, сколько стоит и как будет проверяться результат. Ошибочные решения необходимо исправлять.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА РАВНЫЕ ПРАВИЛА.</h3>
+          <p>Связи, состояние, происхождение и партийный билет не должны давать неприкосновенность. Ответственность определяется поступками и доказательствами.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА СВОБОДУ МЫСЛИ И СОВЕСТИ.</h3>
+          <p>Человек вправе сомневаться, спорить, верить, не верить и мирно критиковать власть. Несогласие — нормальная часть общественной жизни.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА ВЛАСТЬ, КОТОРАЯ ОТЧИТЫВАЕТСЯ.</h3>
+          <p>Общественные деньги требуют открытых расходов. Политические обещания требуют сроков и проверяемых результатов. Руководители должны быть сменяемыми.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА ДОСТОИНСТВО ТРУДА.</h3>
+          <p>Честная работа и предпринимательство должны давать возможность достойно жить. Мы выступаем за понятные налоги, защиту работников и свободу от вымогательства.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА ВЗАИМОПОМОЩЬ.</h3>
+          <p>Доступ к лечению, образованию и защите не должен зависеть только от толщины кошелька. Поддержка должна помогать человеку обрести устойчивость и самостоятельность.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА УВАЖЕНИЕ К КОРНЯМ И СВОБОДУ БУДУЩЕГО.</h3>
+          <p>Мы сохраняем славянские языки, историю и культурные связи. Каждый человек и каждый народ вправе самостоятельно выбирать свой путь.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА МИР, БЕЗОПАСНОСТЬ И СУВЕРЕНИТЕТ.</h3>
+          <p>Культурная близость предполагает взаимное уважение и добровольное сотрудничество. Она не даёт права распоряжаться чужой землёй или чужой жизнью.</p>
+        </li>
+        <li>
+          <h3>МЫ ЗА УЧАСТИЕ ЛЮДЕЙ В РЕШЕНИЯХ.</h3>
+          <p>Жители должны влиять на развитие своих городов и сёл. Решения, затрагивающие человека, требуют возможности быть услышанным.</p>
+        </li>
+        <li>
+          <h3>МЫ НАЧИНАЕМ С СЕБЯ.</h3>
+          <p>Открытое финансирование ВСЕ, выборность руководства, право на внутреннюю критику и одинаковые требования к своим и чужим — наши обязательства.</p>
+        </li>
+      </ol>
+    </details>
+  </section>
+</div>
 
 <!-- Цели -->
 <div class="goals tex-slavic">
@@ -240,54 +331,13 @@ footer .copy{font-size:.72rem;opacity:.4}
 <!-- География -->
 <div class="cities-section tex-linen">
   <section id="cities">
-    <h2 class="section-title">3 страны · 24 города</h2>
-    <p style="color:var(--muted);margin-top:.3rem">Мы объединяем восточных славян по всей территории.</p>
-
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0 2.5rem">
-      <div style="text-align:center;padding:1.2rem;background:linear-gradient(135deg,#fef9ee,#fef3d0);border-radius:14px;border:1px solid #e8dfc0">
-        <div style="font-size:2rem;margin-bottom:.3rem">🇺🇦</div>
-        <div style="font-weight:700;color:var(--blue1);font-size:1rem">Украина</div>
-        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">24 города</div>
-      </div>
-      <div style="text-align:center;padding:1.2rem;background:linear-gradient(135deg,#eef2f9,#dde4f0);border-radius:14px;border:1px solid #ccd5e8">
-        <div style="font-size:2rem;margin-bottom:.3rem">🇷🇺</div>
-        <div style="font-weight:700;color:var(--blue1);font-size:1rem">Россия</div>
-        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">скоро</div>
-      </div>
-      <div style="text-align:center;padding:1.2rem;background:linear-gradient(135deg,#eef5ee,#d5e8d5);border-radius:14px;border:1px solid #c0d8c0">
-        <div style="font-size:2rem;margin-bottom:.3rem">🇧🇾</div>
-        <div style="font-weight:700;color:var(--blue1);font-size:1rem">Беларусь</div>
-        <div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">скоро</div>
-      </div>
-    </div>
-
-    <h3 style="font-size:.9rem;font-weight:700;color:var(--blue1);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.8rem">🇺🇦 Украина — 24 города</h3>
-    <div class="cities-grid">
-      <div class="city">Киев</div>
-      <div class="city">Харьков</div>
-      <div class="city">Одесса</div>
-      <div class="city">Днепр</div>
-      <div class="city">Львов</div>
-      <div class="city">Запорожье</div>
-      <div class="city">Винница</div>
-      <div class="city">Чернигов</div>
-      <div class="city">Житомир</div>
-      <div class="city">Ужгород</div>
-      <div class="city">Ивано-Франковск</div>
-      <div class="city">Кропивницкий</div>
-      <div class="city">Луцк</div>
-      <div class="city">Николаев</div>
-      <div class="city">Полтава</div>
-      <div class="city">Ровно</div>
-      <div class="city">Сумы</div>
-      <div class="city">Тернополь</div>
-      <div class="city">Херсон</div>
-      <div class="city">Хмельницкий</div>
-      <div class="city">Черкассы</div>
-      <div class="city">Черновцы</div>
-      <div class="city">Донецк</div>
-      <div class="city">Луганск</div>
-    </div>
+    <h2 class="section-title">3 страны</h2>
+    <p style="color:var(--muted);margin-top:.3rem">Культурные связи, общение и взаимопомощь.</p>
+    <ul class="countries-grid" aria-label="Страны">
+      <li class="country"><span class="country-flag" aria-hidden="true">🇺🇦</span><h3>Украина</h3></li>
+      <li class="country"><span class="country-flag" aria-hidden="true">🇷🇺</span><h3>Россия</h3></li>
+      <li class="country"><span class="country-flag" aria-hidden="true">🇧🇾</span><h3>Беларусь</h3></li>
+    </ul>
   </section>
 </div>
 
@@ -336,6 +386,7 @@ footer .copy{font-size:.72rem;opacity:.4}
 <!-- Footer -->
 <footer>
   <div class="links">
+    <a href="#declaration">Декларация</a>
     <a href="https://t.me/vse_edinstvo_bot">Бот</a>
     <a href="https://t.me/vse_edinstvo">Канал</a>
   </div>
@@ -349,7 +400,13 @@ for(let i=0;i<20;i++){const p=document.createElement('div');p.className='particl
 
 // Scroll reveal
 const obs=new IntersectionObserver(e=>{e.forEach((el,i)=>{if(el.isIntersecting){el.target.style.transitionDelay=(i*.06)+'s';el.target.style.opacity='1';el.target.style.transform='translateY(0)'}})},{threshold:.08});
-document.querySelectorAll('.about-card,.goal-card,.value-item,.step,.city').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el)});
+document.querySelectorAll('.about-card,.goal-card,.value-item,.step').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .6s ease,transform .6s ease';obs.observe(el)});
+
+// Direct links open the complete declaration.
+function openDeclaration(){if(location.hash==='#declaration'||location.hash==='#declaration-text'){document.getElementById('declaration-text').open=true}}
+openDeclaration();
+window.addEventListener('hashchange',openDeclaration);
+document.querySelectorAll('a[href="#declaration"]').forEach(link=>link.addEventListener('click',()=>{document.getElementById('declaration-text').open=true}));
 
 // Parallax hero
 window.addEventListener('scroll',()=>{const s=window.scrollY;if(s<window.innerHeight){document.querySelector('.hero-bg').style.transform='scale('+(1+s*.0001)+') translateY('+s*.3+'px)'}});
